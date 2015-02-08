@@ -1,5 +1,5 @@
 <?php
-$host = "raccoonweb.ddns.net";
+$host = "localhost";
 $db_name = "practica";
 $username = "root";
 $password = "root";

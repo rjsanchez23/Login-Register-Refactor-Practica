@@ -4,8 +4,8 @@ if($_POST){
 
     try{
         // load database connection and password hasher library
-        require 'libs/DbConnect.php';
-        require 'libs/PasswordHash.php';
+        require 'DbConnect.php';
+        require 'PasswordHash.php';
 
         /*
          * -prepare password to be saved

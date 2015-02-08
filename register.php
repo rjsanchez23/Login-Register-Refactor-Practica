@@ -8,7 +8,7 @@
 <div id="loginForm">
 
 
-	<form action="register.php" method="post">
+	<form action="src/Classes/UserRegister.php" method="post">
 	
 		<div id="formHeader">Registration Form</div>
 		
