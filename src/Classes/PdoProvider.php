@@ -1,21 +1,18 @@
 <?php
 
+namespace src\classes;
 
-final class PDO_Provider extends PDO
+final class PdoProvider extends \PDO
 {
-	/**
-	 * Constructor. Inits PDO
-	 *
-	 * @param array $params
-	 * @return void
-	 */
-	public function __construct(array $params)
+	private $host = 'localhost';
+	private $user = 'root';
+	private $password = 'root';
+	private $database = 'practica';
+
+	public function __construct()
 	{
 		try {
-
-			extract($params);
-
-			parent::__construct(sprintf('mysql: host=%s; dbname=%s', $host, $database), $user, $password);
+			parent::__construct(sprintf('mysql: host=%s; dbname=%s', $this->host, $this->database), $this->user, $this->password);
 
 			$this->setAttribute(parent::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES UTF8');
 			$this->setAttribute(parent::ATTR_ERRMODE, parent::ERRMODE_EXCEPTION);

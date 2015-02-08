@@ -1,9 +1,12 @@
 <?php
 
-    require 'DbConnect.php';
+    require_once __DIR__.'/../../vendor/autoload.php';
+
+    use src\classes\PdoProvider;
     require 'PasswordHash.php';
 
     $isPostRequest = $_SERVER['REQUEST_METHOD'] == 'POST';
+
 
     const ACCESS_GRANTED = "<div>Access granted.</div>";
     const ACCESS_DENIED = "<div>Access denied. <a href='login.php'>Back.</a></div>";
@@ -15,7 +18,7 @@
 
     try {
 
-
+        $dbConection = new PdoProvider();
         $formUserMail = $_POST['email'];
         $formUserPassword = $_POST['password'];
 
@@ -36,13 +39,10 @@
         return $stmt->rowCount();
      }
 
-     function findUser($formUserMail, $con)
+     function findUser($formUserMail, $dbConection)
      {
-
         $query = "select email, password from users where email = ? limit 0,1";
-        $stmt = $con->prepare( $query );
-
-        // this will represent the first question mark
+        $stmt = $dbConection->prepare( $query );
         $stmt->bindParam(1, $formUserMail);
         $stmt->execute();
 
@@ -58,23 +58,15 @@
 
     function checkPassword($formUserPassword, $userPasswordStored)
     {
-
-        // salt and entered password by the user
         $salt = "ilovecodeofaninjabymikedalisay";
-
         $saltedPostedPassword = $salt . $formUserPassword;
-
-        // instantiate PasswordHash to check if it is a valid password
         $hasher = new PasswordHash(8,false);
         $check = $hasher->CheckPassword($saltedPostedPassword, $userPasswordStored);
-
         return $check;
-
     }
 
     function isValidUser($formUserMail, $formUserPassword, $dbConection )
     {
-
         if(!userExists($formUserMail, $dbConection )){
             return false;
         }
@@ -82,11 +74,6 @@
         $userPasswordStored = $user["password"];
         $isValidPassword = checkPassword($formUserPassword, $userPasswordStored);
 
-
-        if(!$isValidPassword){
-            return false;
-        }
-
-        return true;
+        return $isValidPassword;
     }
 

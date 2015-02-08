@@ -1,16 +1,21 @@
 <?php
-require 'DbConnect.php';
-require 'PasswordHash.php';
+
+    require_once __DIR__.'../../vendor/autoload.php';
+    use src\classes\PdoProvider;
+    require 'PasswordHash.php';
 
     $isPostRequest =  $_SERVER['REQUEST_METHOD'] == 'POST';
+
     const SAVE_SUCCESS = "<div>Successful registration.</div>";
     const SAVE_FAIL = "<div>Unable to register. <a href='register.php'>Please try again.</a></div>";
 
     if(!$isPostRequest){
         echo ACCESS_DENIED;
     }
-    try{
 
+    try
+    {
+        $dbConection = new PdoProvider();
         $formUserMail = $_POST['email'];
         $formUserPassword = $_POST['password'];
 
@@ -22,31 +27,26 @@ require 'PasswordHash.php';
             echo SAVE_FAIL;
         }
 
-    }catch(PDOException $exception){
+    }
+    catch(PDOException $exception){
         echo "Error: " . $exception->getMessage();
     }
 
-    function encodePassword($formUserPassword){
+    function encodePassword($formUserPassword)
+    {
         $salt = "ilovecodeofaninjabymikedalisay";
         $password = $salt . $formUserPassword;
-
         $hasher = new PasswordHash(8,false);
         return $hasher->HashPassword($password);
     }
 
-    function saveUser($formUserMail,$encodedPassword, $dbConection ){
+    function saveUser($formUserMail,$encodedPassword, $dbConection )
+    {
         // insert command
         $query = "INSERT INTO users SET email = ?, password = ?";
-
         $stmt = $dbConection->prepare($query);
-
         $stmt->bindParam(1, $formUserMail);
         $stmt->bindParam(2, $encodedPassword);
 
-        // execute the query
-        if($stmt->execute()){
-            return true;
-        }else{
-            return false;
-        }
+        return $stmt->execute();
     }
