@@ -3,26 +3,31 @@
     require 'DbConnect.php';
     require 'PasswordHash.php';
 
-    $isPostRequest =  $_SERVER['REQUEST_METHOD'] != 'POST';
-    $dbConection =  $con;
+    $isPostRequest = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-    const ACCESS_GRANTED =   "<div>Access granted.</div>";
-    const ACCESS_DENIED =   "<div>Access denied. <a href='login.php'>Back.</a></div>";
+    const ACCESS_GRANTED = "<div>Access granted.</div>";
+    const ACCESS_DENIED = "<div>Access denied. <a href='login.php'>Back.</a></div>";
 
-    if($isPostRequest){
+    if (!$isPostRequest) {
         echo ACCESS_DENIED;
+        exit();
     }
 
-    $formUserMail = $_POST['email'];
-    $formUserPassword = $_POST['password'];
+    try {
 
-    if(isValidUser($formUserMail, $formUserPassword, $dbConection )){
-        echo ACCESS_GRANTED;
-    }else{
-        echo ACCESS_DENIED;
+
+        $formUserMail = $_POST['email'];
+        $formUserPassword = $_POST['password'];
+
+        if (isValidUser($formUserMail, $formUserPassword, $dbConection)) {
+            echo ACCESS_GRANTED;
+        } else {
+            echo ACCESS_DENIED;
+        }
+
+    }catch(PDOException $exception){
+        echo "Error: " . $exception->getMessage();
     }
-
-
 
      function userExists($userMail, $dbConection )
      {
