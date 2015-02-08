@@ -6,32 +6,21 @@
     $isPostRequest =  $_SERVER['REQUEST_METHOD'] != 'POST';
     $dbConection =  $con;
 
-    if($isPostRequest){
-        echo ACCESS_DENIED;
-    }
     const ACCESS_GRANTED =   "<div>Access granted.</div>";
     const ACCESS_DENIED =   "<div>Access denied. <a href='login.php'>Back.</a></div>";
 
+    if($isPostRequest){
+        echo ACCESS_DENIED;
+    }
 
     $formUserMail = $_POST['email'];
     $formUserPassword = $_POST['password'];
 
-    if(!userExists($formUserMail, $dbConection )){
-         echo ACCESS_DENIED;
-         exit();
-    }
-
-    $user = getUserFromDatabase($formUserMail, $dbConection );
-    $userPasswordStored = $user["password"];
-    $isValidUser = checkLogin($formUserPassword, $userPasswordStored);
-
-
-    if(!$isValidUser){
+    if(isValidUser($formUserMail, $formUserPassword, $dbConection )){
+        echo ACCESS_GRANTED;
+    }else{
         echo ACCESS_DENIED;
-        exit();
     }
-
-    echo ACCESS_GRANTED;
 
 
 
@@ -40,8 +29,7 @@
 
         $stmt = findUser($userMail, $dbConection );
         return $stmt->rowCount();
-
-    }
+     }
 
      function findUser($formUserMail, $con)
      {
@@ -63,7 +51,7 @@
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    function checkLogin($formUserPassword, $userPasswordStored)
+    function checkPassword($formUserPassword, $userPasswordStored)
     {
 
         // salt and entered password by the user
@@ -77,5 +65,23 @@
 
         return $check;
 
+    }
+
+    function isValidUser($formUserMail, $formUserPassword, $dbConection )
+    {
+
+        if(!userExists($formUserMail, $dbConection )){
+            return false;
+        }
+        $user = getUserFromDatabase($formUserMail, $dbConection );
+        $userPasswordStored = $user["password"];
+        $isValidPassword = checkPassword($formUserPassword, $userPasswordStored);
+
+
+        if(!$isValidPassword){
+            return false;
+        }
+
+        return true;
     }
 
