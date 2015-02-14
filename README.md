@@ -1,4 +1,4 @@
-#Sistema de login en php
+#Sistema de login en PHP
 -----------------------------------------------------------
 ##Instalación:
 ----------------------------
@@ -7,8 +7,7 @@
 $ curl -sS https://getcomposer.org/installer 
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
-* Usa vez tenemos instalado Composer nos dirigimos a nuestra carpeta del proyecto donde se encuentra el fichero composer.json
-y ejecutaremos el siguiente comando:
+* Usa vez tenemos instalado Composer es necesario bajarnos las dependencias ya que necesitaremos el autoload de composer, para ello nos dirigimos a nuestra carpeta del proyecto donde se encuentra el fichero composer.json y ejecutaremos el siguiente comando:
 ```bash
 $ composer update
 ```
