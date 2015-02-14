@@ -1,0 +1,1 @@
+<html>	<head>		<title>registration page - php salt and hash password - www.codeofaninja.com</title>		<link type="text/css" rel="stylesheet" href="css/style.css" />	</head><body><div id="loginForm">				<div>Unable to register. <a href='register.php'>Please try again.</a></div>				</div></body></html>

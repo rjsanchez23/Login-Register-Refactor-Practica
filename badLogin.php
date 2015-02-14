@@ -1,0 +1,1 @@
+<html>	<head>		<title>login page - php salt and hash password - www.codeofaninja.com</title>		<link type="text/css" rel="stylesheet" href="css/style.css" />	</head><body><div id="loginForm">	<div>Access denied. <a href='login.php'>Back.</a></div>			</div></body></html>
