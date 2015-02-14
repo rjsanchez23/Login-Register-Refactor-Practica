@@ -21,7 +21,7 @@ $ composer update
 ```bash
 /config/db_params.php
 ```
-*Para configurar las rutas a los ficheros donde queramos dirigirnos una vez logueados o los mensajes de salida en consola:
+* Para configurar las rutas a los ficheros donde queramos dirigirnos una vez logueados o los mensajes de salida en consola:
 ```bash
 /config/login_params.php
 ```
