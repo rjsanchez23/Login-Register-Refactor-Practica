@@ -22,7 +22,7 @@ class PasswordManager
         $isValidPasswordphp55Hash = password_verify($formUserPassword, $storedUserPassword);
         $isValidPasswordHash = $this->originalPasswordHashValidate($formUserPassword, $storedUserPassword);
 
-        return $isValidPasswordphp55Hash || $isValidPasswordHash;
+        return $isValidPasswordphp55Hash || !$isValidPasswordHash;
     }
 
     public function hashPassword($password)
