@@ -4,8 +4,7 @@ $sql_config = include(__DIR__ . '/../../config/db_params.php');
 $login_config = include(__DIR__ . '/../../config/login_params.php');
 
 use src\classes\PdoProvider;
-use src\classes\User;
-use src\classes\DatabaseUserManager;
+use src\classes\UserDatabase;
 use src\classes\PasswordValidation;
 use src\classes\defaultVerifyPasswordStrategy;
 use src\classes\oldVerifyPasswordStrategy;
@@ -18,35 +17,38 @@ use src\classes\RequestMethodFactory;
 try {
 
 
-    $requestMethod = new RequestMethodFactory();
-    $requestMethod = $requestMethod->makeRequestMethodFactory();
+    $requestMethodFactory = new RequestMethodFactory();
+    $requestMethod = $requestMethodFactory->getRequestMethod();
 
-    $formUserMail = $requestMethod->requestUserMail();
-    $formUserPassword = $requestMethod->requestUserPassword();
+    $formUserMail = $requestMethod->getUserMail();
+    $formUserPassword = $requestMethod->getUserPassword();
 
     $dbConection = new PdoProvider($sql_config);
-    $databaseUser = new DatabaseUserManager(new User(), $dbConection);
-    $storedUser = $databaseUser->getUser($formUserMail);
+    $databaseUser = new UserDatabase($dbConection);
+    $databaseUser->setStoredUserIfExists($formUserMail);
 
     $php55validatePasswordStrategy = new DefaultVerifyPasswordStrategy();
     $oldvalidatePasswordStrategy = new OldVerifyPasswordStrategy();
 
     $passwordValidator = new PasswordValidation($php55validatePasswordStrategy, $oldvalidatePasswordStrategy);
-    $passwordValidator->validatePassword($formUserPassword, $storedUser->getPassword());
+    $passwordValidator->validatePassword($formUserPassword, $databaseUser->getPassword());
 
     $requestMethod->AcceptedLoginAction($login_config);
 
 
-}catch(PDOException $exception){
+}catch(PDOException $exception)
+{
     echo "Error: " . $exception->getMessage()."\n\n";
-}catch(UserNotExistsException $exception){
+}catch(UserNotExistsException $exception)
+{
     echo "Error: " . $exception->getMessage()."\n\n";
     header("Location: ".$login_config['redirectErrorLogin']);
-}catch(IncorrectPasswordException $exception){
+}catch(IncorrectPasswordException $exception)
+{
     echo "Error: " . $exception->getMessage()."\n\n";
     header("Location: ".$config['redirectErrorLogin']);
-}catch(InvalidRequestMethodException $exception){
-
+}catch(InvalidRequestMethodException $exception)
+{
     echo "Error: " . $exception->getMessage()."\n\n";
     header("Location: ".$login_config['redirectErrorLogin']);
 }

@@ -1,33 +1,18 @@
 <?php
 
 namespace src\classes;
-class User{
-    private $userMail;
-    private $password;
-
-    public function __construct($userMail = null, $password = null){
-        $this->userMail = $userMail;
-        $this->password = $password;
-    }
+abstract class User{
+    protected $mail;
+    protected $password;
 
     public function getMail(){
-        return $this->userMail;
+        return $this->mail;
     }
     public function getPassword(){
         return $this->password;
     }
-    public function setMail($userName){
-        $this->userMail = $userName;
-    }
-    public function setPassword($userPassword){
-        $this->password = $userPassword;
-    }
 
-    public static function getInstance()
-    {
-        if( self::$_instance === NULL ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    abstract public function setStoredUserIfExists($userMail);
+    abstract public function saveUser($mail, $password);
+
 }

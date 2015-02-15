@@ -10,12 +10,12 @@ class PostRequestMethod implements IRequestMethod{
 
     const POST_REQUEST = 'POST';
 
-    public function requestUserMail()
+    public function getUserMail()
     {
         $this->CheckMethod();
         return $_POST['email'];
     }
-    public function requestUserPassword()
+    public function getUserPassword()
     {
         $this->CheckMethod();
         return $_POST['password'];

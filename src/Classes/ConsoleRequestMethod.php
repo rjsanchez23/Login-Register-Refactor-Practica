@@ -17,13 +17,13 @@ class ConsoleRequestMethod implements IRequestMethod{
         $this->handle = fopen ("php://stdin","r");
     }
 
-    public function requestUserMail()
+    public function getUserMail()
     {
         echo "User: ";
         $this->line = fgets($this->handle);
         return trim($this->line);
     }
-    public function requestUserPassword()
+    public function getUserPassword()
     {
         echo "Password: ";
         $this->line = fgets($this->handle);

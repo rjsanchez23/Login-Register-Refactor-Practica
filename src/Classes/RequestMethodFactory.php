@@ -12,7 +12,7 @@ class RequestMethodFactory
     const POSTMETHOD = "fpm-fcgi";
     const CONSOLEMETHOD = "cli";
 
-    public function makeRequestMethodFactory()
+    public function getRequestMethod()
     {
         $method = php_sapi_name();
         $requestMethod = NULL;
