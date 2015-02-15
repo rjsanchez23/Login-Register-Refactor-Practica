@@ -2,7 +2,7 @@
 
 namespace src\classes;
 
-final class PdoProvider extends \PDO
+final class PdoAdapter extends \PDO
 {
 
 	public function __construct(Array $sql_config)

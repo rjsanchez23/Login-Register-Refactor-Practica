@@ -30,11 +30,17 @@ class ConsoleRequestMethod implements IRequestMethod{
         return trim($this->line);
     }
 
-    public function AcceptedLoginAction($config){
-        echo $config['ConsoleMenssageAfterLogin'];
+    public function loginResponse($config, $isValidUser){
+        if($isValidUser){
+            echo $config['ConsoleMenssageAfterLogin'];
+        }else{
+            echo "Error: Credenciales Invalidas\n\n";
+        }
+
     }
-    public function AcceptedRegistrationAction($config){
-        echo $config['ConsoleMenssageAfterRegister'];
+    public function RegistrationResponse($config){
+            echo $config['ConsoleMenssageAfterRegister'];
+
     }
 
 }

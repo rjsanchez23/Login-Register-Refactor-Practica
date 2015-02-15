@@ -7,6 +7,6 @@ interface IRequestMethod
 {
     public function getUserMail();
     public function getUserPassword();
-    public function AcceptedLoginAction($config);
-    public function AcceptedRegistrationAction($config);
+    public function loginResponse($config, $isValidUser);
+    public function RegistrationResponse($config);
 }

@@ -3,7 +3,7 @@
 require_once __DIR__.'/../../vendor/autoload.php';
 
 
-use src\classes\PasswordValidation;
+use src\classes\PasswordManager;
 use src\classes\Exceptions\IncorrectPasswordException;
 use src\classes\defaultVerifyPasswordStrategy;
 use src\classes\oldVerifyPasswordStrategy;
@@ -17,7 +17,7 @@ try{
     $php55validatePasswordStrategy = new DefaultVerifyPasswordStrategy();
     $oldvalidatePasswordStrategy = new OldVerifyPasswordStrategy();
 
-    $passwordValidator = new PasswordValidation($php55validatePasswordStrategy, $oldvalidatePasswordStrategy);
+    $passwordValidator = new PasswordManager($php55validatePasswordStrategy, $oldvalidatePasswordStrategy);
     $passwordValidator->validatePassword($formUserPassword, $databaseUserPassword);
     echo "Correct Password";
 

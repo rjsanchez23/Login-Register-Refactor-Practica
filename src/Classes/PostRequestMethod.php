@@ -27,13 +27,19 @@ class PostRequestMethod implements IRequestMethod{
             throw new InvalidRequestMethodException;
         }
     }
-    public function AcceptedLoginAction($config)
+    public function loginResponse($config, $isValidUser)
     {
-        header("Location: ".$config['redirectAfterLogin']);
+        if($isValidUser){
+            header("Location: ".$config['redirectAfterLogin']);
+        }else{
+            header("Location: ".$config['redirectErrorLogin']);
+        }
+
     }
-    public function AcceptedRegistrationAction($config)
+    public function RegistrationResponse($config)
     {
-        header("Location: ".$config['redirectAfterRegister']);
+            header("Location: ".$config['redirectAfterRegister']);
+
     }
 
 

@@ -4,11 +4,12 @@ $sql_config = include(__DIR__ . '/../../config/db_params.php');
 $login_config = include(__DIR__ . '/../../config/login_params.php');
 require_once __DIR__.'/../lib/password.php';//libreria compatibilidad php 5.4
 
-use src\classes\PdoProvider;
+use src\classes\PdoAdapter;
 use src\classes\DatabaseUserManager;
 use src\classes\Exceptions\InvalidRequestMethodException;
 use src\classes\RequestMethodFactory;
-use src\classes\UserDatabase;
+use src\classes\DBUserRepository;
+use src\classes\User;
 
 
 try {
@@ -21,14 +22,15 @@ try {
     $formUserMail = $requestMethod->getUserMail();
     $formUserPassword = $requestMethod->getUserPassword();
 
-    $dbConection = new PdoProvider($sql_config);
+    $dbConection = new PdoAdapter($sql_config);
 
     $hashedPassword = password_hash($formUserPassword, PASSWORD_BCRYPT);
 
-    $databaseUser = new UserDatabase($dbConection);
-    $databaseUser->saveUser($formUserMail, $hashedPassword);
+    $newUser = new User($formUserMail, $hashedPassword);
+    $databaseUser = new DBUserRepository($dbConection);
+    $databaseUser->saveUser($newUser);
 
-    $requestMethod->AcceptedRegistrationAction($login_config);
+    $requestMethod->RegistrationResponse($login_config);
 
 
 }catch(PDOException $exception){
