@@ -1,8 +1,8 @@
 <?php
 
 return array(
-    'host'          =>  'localhost',
+    'host'          =>  'raccoonweb.ddns.net',
     'user'          =>  'root',
     'password'      =>  'root',
-    'database'      =>  'practica',
+    'database'      =>  'login',
 );

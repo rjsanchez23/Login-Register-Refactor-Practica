@@ -3,9 +3,9 @@
 
 namespace src\classes;
 
-use src\classes\Interfaces\IRequestMethod;
+use src\classes\Interfaces\RequestMethodInterface;
 
-class ConsoleRequestMethod implements IRequestMethod{
+class ConsoleRequestMethod implements RequestMethodInterface{
 
 
     private $handle;
@@ -30,17 +30,5 @@ class ConsoleRequestMethod implements IRequestMethod{
         return trim($this->line);
     }
 
-    public function loginResponse($config, $isValidUser){
-        if($isValidUser){
-            echo $config['ConsoleMenssageAfterLogin'];
-        }else{
-            echo "Error: Credenciales Invalidas\n\n";
-        }
-
-    }
-    public function RegistrationResponse($config){
-            echo $config['ConsoleMenssageAfterRegister'];
-
-    }
 
 }

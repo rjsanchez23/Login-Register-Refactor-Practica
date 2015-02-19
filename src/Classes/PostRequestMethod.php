@@ -3,10 +3,11 @@
 
 namespace src\classes;
 
-use src\classes\Interfaces\IRequestMethod;
-use src\classes\Exceptions\InvalidRequestMethodException;
 
-class PostRequestMethod implements IRequestMethod{
+use src\classes\Exceptions\InvalidRequestMethodException;
+use src\classes\Interfaces\RequestMethodInterface;
+
+class PostRequestMethod implements RequestMethodInterface{
 
     const POST_REQUEST = 'POST';
 
@@ -27,20 +28,7 @@ class PostRequestMethod implements IRequestMethod{
             throw new InvalidRequestMethodException;
         }
     }
-    public function loginResponse($config, $isValidUser)
-    {
-        if($isValidUser){
-            header("Location: ".$config['redirectAfterLogin']);
-        }else{
-            header("Location: ".$config['redirectErrorLogin']);
-        }
 
-    }
-    public function RegistrationResponse($config)
-    {
-            header("Location: ".$config['redirectAfterRegister']);
-
-    }
 
 
 
