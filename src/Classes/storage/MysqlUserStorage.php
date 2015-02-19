@@ -13,7 +13,7 @@ final class MysqlUserStorage extends PdoUserStorageAdapter{
             if ($this->db === null) {
                 $this->db = new \PDO("mysql:dbname={$this->database};host={$this->host}", $this->user, $this->password);
             }
-        }catch(PDOException $exception){
+        }catch(\PDOException $exception){
 
             echo "Error: " . $exception->getMessage()."\n\n";
         }

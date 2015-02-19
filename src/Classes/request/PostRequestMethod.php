@@ -5,9 +5,8 @@ namespace src\classes\request;
 
 
 use src\classes\exceptions\InvalidRequestMethodException;
-use src\classes\request\RequestMethodInterface;
 
-class PostRequestMethod implements RequestMethodInterface{
+final class PostRequestMethod implements RequestMethodInterface{
 
     const POST_REQUEST = 'POST';
 

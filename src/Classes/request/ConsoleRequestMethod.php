@@ -3,9 +3,7 @@
 
 namespace src\classes\request;
 
-use src\classes\request\RequestMethodInterface;
-
-class ConsoleRequestMethod implements RequestMethodInterface{
+final class ConsoleRequestMethod implements RequestMethodInterface{
 
 
     private $handle;

@@ -4,7 +4,6 @@
 namespace src\classes;
 
 use src\classes\storage\UserStorageInterface;
-require_once __DIR__.'/../lib/password.php';//libreria compatibilidad php 5.4
 
 
 class UserRegisterUseCase{

@@ -4,7 +4,7 @@
 namespace src\classes\response;
 
 
-class ConsoleResponseMethod implements ResponseMethodInterface{
+final class ConsoleResponseMethod implements ResponseMethodInterface{
 
     public function response($message, $file = null)
     {

@@ -5,7 +5,7 @@ namespace src\classes;
 
 use src\classes\storage\UserStorageInterface;
 use src\lib\PasswordHash;
-require_once __DIR__.'/../lib/password.php';//libreria compatibilidad php 5.4
+
 
 class UserLoginUseCase{
 

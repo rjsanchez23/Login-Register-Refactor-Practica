@@ -5,7 +5,7 @@ namespace src\classes\response;
 
 
 
-class PostResponseMethod implements ResponseMethodInterface{
+final class PostResponseMethod implements ResponseMethodInterface{
 
     private $twig;
     const TEMPLATES_PATH = '/../../templates' ;
