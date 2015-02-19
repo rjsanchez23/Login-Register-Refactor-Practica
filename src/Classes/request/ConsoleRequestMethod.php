@@ -1,9 +1,9 @@
 <?php
 
 
-namespace src\classes;
+namespace src\classes\request;
 
-use src\classes\Interfaces\RequestMethodInterface;
+use src\classes\request\RequestMethodInterface;
 
 class ConsoleRequestMethod implements RequestMethodInterface{
 

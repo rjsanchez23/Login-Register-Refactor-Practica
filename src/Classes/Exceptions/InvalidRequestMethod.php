@@ -1,8 +1,8 @@
 <?php
 
-namespace src\classes\Exceptions;
+namespace src\classes\exceptions;
 
 class InvalidRequestMethodException extends \RuntimeException{
-    protected $message = "El metodo de request es incorrecto";
+    protected $message = "Bad request method";
     protected $code = 2002;
 }

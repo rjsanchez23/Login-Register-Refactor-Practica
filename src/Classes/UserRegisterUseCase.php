@@ -3,7 +3,8 @@
 
 namespace src\classes;
 
-use src\classes\interfaces\UserStorageInterface;
+use src\classes\storage\UserStorageInterface;
+use src\lib\password;
 
 
 class UserRegisterUseCase{
@@ -16,11 +17,13 @@ class UserRegisterUseCase{
     }
     public function execute($userMail, $userPassword)
     {
-        $hashedPassword = $this->userStorageInterface->hashPassword($userPassword);
+        $hashedPassword = $this->hashPassword($userPassword);
         $this->userStorageInterface->save($userMail, $hashedPassword);
-
     }
 
-
+    private function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
 
 }

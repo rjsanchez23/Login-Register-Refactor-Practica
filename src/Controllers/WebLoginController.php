@@ -3,10 +3,11 @@ require_once __DIR__.'/../../vendor/autoload.php';
 $sql_config = include(__DIR__ . '/../../config/db_params.php');
 $login_config = include(__DIR__ . '/../../config/login_params.php');
 
-use src\classes\MysqlUserStorage;
+use src\classes\storage\MysqlUserStorage;
 use src\classes\UserLoginUseCase;
-use src\classes\PostRequestMethod;
-use src\classes\Exceptions\InvalidUserCredentialsException;
+use src\classes\request\PostRequestMethod;
+use src\classes\response\PostResponseMethod;
+use src\classes\exceptions\InvalidUserCredentialsException;
 
 
 try {
@@ -22,7 +23,10 @@ try {
     $userLoginUseCase->execute($formUserMail, $formUserPassword);
 
 
-    header("Location: ".$login_config['redirectAfterLogin']);
+    $responseHandler = new PostResponseMethod();
+    $responseHandler->response("Access granted.","home.twig.php");
+
+
 
 
 }catch(InvalidUserCredentialsException $exception)

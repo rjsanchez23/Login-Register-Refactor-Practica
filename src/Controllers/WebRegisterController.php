@@ -20,7 +20,8 @@ try {
     $userLoginUseCase = new UserRegisterUseCase($mysqlUserStorage);
     $userLoginUseCase->execute($formUserMail, $formUserPassword);
 
-    header("Location: ".$login_config['redirectAfterRegister']);
+    $responseHandler = new PostResponseMethod();
+    $responseHandler->response("Successful registration.","home.twig.php");
 
 }catch(InvalidRequestMethodException $exception){
     echo "Error: " . $exception->getMessage()."\n\n";

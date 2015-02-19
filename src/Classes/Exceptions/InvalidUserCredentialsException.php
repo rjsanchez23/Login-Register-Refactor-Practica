@@ -1,8 +1,8 @@
 <?php
 
-namespace src\classes\Exceptions;
+namespace src\classes\exceptions;
 
 class InvalidUserCredentialsException extends \RuntimeException{
-    protected $message = "Las credenciales son incorrectas";
+    protected $message = "Invalid credentials";
     protected $code = 2001;
 }

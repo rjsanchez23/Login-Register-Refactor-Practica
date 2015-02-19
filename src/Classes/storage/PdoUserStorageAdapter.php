@@ -1,10 +1,10 @@
 <?php
 
-namespace src\classes;
+namespace src\classes\storage;
 
-use src\classes\Exceptions\InvalidUserCredentialsException;
-use src\classes\Interfaces\UserStorageInterface;
-use src\lib\PasswordHash;
+use src\classes\exceptions\InvalidUserCredentialsException;
+use src\classes\storage\UserStorageInterface;
+
 
 Abstract class PdoUserStorageAdapter implements UserStorageInterface
 {
@@ -14,7 +14,7 @@ Abstract class PdoUserStorageAdapter implements UserStorageInterface
 	protected $password;
 	protected $db;
 
-	const SALT = "ilovecodeofaninjabymikedalisay";
+	
 
 	public function __construct($host = null, $database = null, $user = '', $password = '')
 	{
@@ -35,8 +35,6 @@ Abstract class PdoUserStorageAdapter implements UserStorageInterface
 		$stmt->execute();
 		$userRow = $stmt->fetch(\PDO::FETCH_ASSOC);
 		if(!$userRow){
-			echo "error2";
-			exit();
 			throw new InvalidUserCredentialsException;
 		}
 		return $userRow;
@@ -53,33 +51,7 @@ Abstract class PdoUserStorageAdapter implements UserStorageInterface
 		return $stmt->execute();
 	}
 
-	public function IsValidPassword($formUserPassword, $storedUserPassword)
-	{
-
-		if($storedUserPassword == null){
-			return false;
-		}
-
-
-		$isValidPasswordphp55Hash = password_verify($formUserPassword, $storedUserPassword);
-		$isValidPasswordHash = $this->originalPasswordHashValidate($formUserPassword, $storedUserPassword);
-
-		if(!$isValidPasswordphp55Hash && !$isValidPasswordHash){
-			throw new InvalidUserCredentialsException;
-		}
-	}
-
-	public function hashPassword($password)
-	{
-		return password_hash($password, PASSWORD_BCRYPT);
-	}
-
-	public function originalPasswordHashValidate($formUserPassword, $storedUserPassword)
-	{
-		$saltedPostedPassword = self::SALT . $formUserPassword;
-		$hasher = new PasswordHash(8,false);
-		return $hasher->CheckPassword($saltedPostedPassword, $storedUserPassword);
-	}
+	
 
 	abstract protected function initDB();
 

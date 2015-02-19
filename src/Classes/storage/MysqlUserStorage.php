@@ -1,6 +1,6 @@
 <?php
 
-namespace src\classes;
+namespace src\classes\storage;
 
 
 final class MysqlUserStorage extends PdoUserStorageAdapter{

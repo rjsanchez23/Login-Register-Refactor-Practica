@@ -1,8 +1,7 @@
 <?php
 
-namespace src\classes\Interfaces;
+namespace src\classes\request;
 
-use src\classes\User;
 interface RequestMethodInterface
 {
     public function getUserMail();

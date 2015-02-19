@@ -1,1 +1,0 @@
-<html>	<head>		<title>Login correct</title>		<link type="text/css" rel="stylesheet" href="css/style.css" />	</head><body><div id="loginForm">																		<div>Access granted.</div>						</div></body></html>

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace src\classes;
+namespace src\classes\request;
 
 
-use src\classes\Exceptions\InvalidRequestMethodException;
-use src\classes\Interfaces\RequestMethodInterface;
+use src\classes\exceptions\InvalidRequestMethodException;
+use src\classes\request\RequestMethodInterface;
 
 class PostRequestMethod implements RequestMethodInterface{
 
