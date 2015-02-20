@@ -3,7 +3,7 @@
 namespace src\classes\storage;
 
 
-final class MysqlUserStorage extends PdoUserStorageAdapter{
+final class MysqlUserStorage extends SqlUserStorageAdapter{
 
 
 

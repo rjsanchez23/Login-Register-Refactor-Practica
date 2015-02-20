@@ -6,7 +6,7 @@ use src\classes\exceptions\InvalidUserCredentialsException;
 
 
 
-Abstract class PdoUserStorageAdapter implements UserStorageInterface
+Abstract class SqlUserStorageAdapter implements UserStorageInterface
 {
     protected $host;
     protected $database;
