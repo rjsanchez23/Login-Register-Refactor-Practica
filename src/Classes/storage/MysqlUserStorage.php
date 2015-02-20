@@ -3,19 +3,20 @@
 namespace src\classes\storage;
 
 
-final class MysqlUserStorage extends SqlUserStorageAdapter{
+final class MysqlUserStorage extends SqlUserStorageAdapter
+{
 
 
-
-    protected function initDB(){
+    protected function initDB()
+    {
 
         try {
             if ($this->db === null) {
                 $this->db = new \PDO("mysql:dbname={$this->database};host={$this->host}", $this->user, $this->password);
             }
-        }catch(\PDOException $exception){
+        } catch (\PDOException $exception) {
 
-            echo "Error: " . $exception->getMessage()."\n\n";
+            echo "Error: " . $exception->getMessage() . "\n\n";
         }
     }
 }

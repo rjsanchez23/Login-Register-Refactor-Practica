@@ -5,9 +5,10 @@ $login_config = include(__DIR__ . '/../../config/login_params.php');
 require_once __DIR__.'/../lib/password.php';//libreria compatibilidad php 5.4
 
 
-use src\classes\Exceptions\InvalidRequestMethodException;
-use src\classes\PostRequestMethod;
-use src\classes\MysqlUserStorage;
+use src\classes\exceptions\InvalidRequestMethodException;
+use src\classes\request\PostRequestMethod;
+use src\classes\response\PostResponseMethod;
+use src\classes\storage\MysqlUserStorage;
 use src\classes\UserRegisterUseCase;
 
 try {

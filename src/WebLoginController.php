@@ -32,6 +32,6 @@ try {
 }catch(InvalidUserCredentialsException $exception)
 {
     header("Location: ".$login_config['redirectErrorLogin']);
-   // echo "Error: " . $exception->getMessage()."\n\n";
+
 }
 
