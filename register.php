@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>registration page - php salt and hash password - www.codeofaninja.com</title>
-		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<link type="text/css" rel="stylesheet" href="assets/css/style.css" />
 	</head>
 <body>
 

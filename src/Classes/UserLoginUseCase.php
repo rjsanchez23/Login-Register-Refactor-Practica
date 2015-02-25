@@ -5,7 +5,7 @@ namespace src\classes;
 
 use src\classes\storage\UserStorageInterface;
 use src\lib\PasswordHash;
-
+use src\classes\exceptions\InvalidUserCredentialsException;
 
 class UserLoginUseCase{
 

@@ -1,13 +1,14 @@
 <?php
-require_once __DIR__.'/../../vendor/autoload.php';
-$sql_config = include(__DIR__ . '/../../config/db_params.php');
-$login_config = include(__DIR__ . '/../../config/login_params.php');
+require_once __DIR__.'/../vendor/autoload.php';
+$sql_config = include(__DIR__ . '/../config/db_params.php');
+$login_config = include(__DIR__ . '/../config/login_params.php');
 
 use src\classes\storage\MysqlUserStorage;
 use src\classes\UserLoginUseCase;
 use src\classes\request\PostRequestMethod;
 use src\classes\response\PostResponseMethod;
 use src\classes\exceptions\InvalidUserCredentialsException;
+use src\classes\exceptions\InvalidRequestMethodException;
 
 
 try {
@@ -24,14 +25,20 @@ try {
 
 
     $responseHandler = new PostResponseMethod();
-    $responseHandler->response("Access granted.","home.twig.php");
+    $responseHandler->response($login_config['MenssageAfterLogin'],"home.twig.php");
 
 
 
 
+}catch(InvalidRequestMethodException $exception)
+{
+    $responseHandler = new PostResponseMethod();
+    $responseHandler->response($login_config['MenssageErrorLogin'],"home.twig.php");
+   // header("Location: ".$login_config['redirectErrorLogin']);
 }catch(InvalidUserCredentialsException $exception)
 {
-    header("Location: ".$login_config['redirectErrorLogin']);
-
+    $responseHandler = new PostResponseMethod();
+    $responseHandler->response($login_config['MenssageErrorLogin'],"home.twig.php");
+   // header("Location: ".$login_config['redirectErrorLogin']);
 }
 

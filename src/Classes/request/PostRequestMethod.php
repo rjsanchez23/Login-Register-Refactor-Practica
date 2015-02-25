@@ -12,6 +12,7 @@ final class PostRequestMethod implements RequestMethodInterface{
 
     public function getUserMail()
     {
+
         $this->CheckMethod();
         return $_POST['email'];
     }

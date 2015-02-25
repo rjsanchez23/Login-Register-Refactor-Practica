@@ -1,9 +1,9 @@
 <?php
 
 return array(
-    'ConsoleMenssageAfterLogin'     =>  'Access granted.',
-    'ConsoleMenssageErrorLogin'     =>  'Access denied.',
-    'ConsoleMenssageAfterRegister'  =>  'Register Successful.',
-    'ConsoleMenssageErrorRegister'  =>  'Register fail.',
+    'MenssageAfterLogin'     =>  'Access granted.',
+    'MenssageErrorLogin'     =>  'Access denied.',
+    'MenssageAfterRegister'  =>  'Register Successful.',
+    'MenssageErrorRegister'  =>  'Register fail.',
 );
 

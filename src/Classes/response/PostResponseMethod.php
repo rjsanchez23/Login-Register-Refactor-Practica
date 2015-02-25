@@ -21,7 +21,6 @@ final class PostResponseMethod implements ResponseMethodInterface{
     {
         $response = array('message' => $message);
          echo $this->twig->render($template, $response );
-
     }
 
     private function getTwigOptions()
