@@ -25,8 +25,8 @@ try {
     $responseHandler->response("Successful registration.","home.twig.php");
 
 }catch(InvalidRequestMethodException $exception){
-    echo "Error: " . $exception->getMessage()."\n\n";
-    header("Location: ".$login_config['redirectErrorRegister']);
+    $responseHandler = new PostResponseMethod();
+    $responseHandler->response($login_config['MenssageErrorRegister'],"home.twig.php");
 }
 
 
