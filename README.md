@@ -20,9 +20,29 @@ $ composer update
 ```bash
 /config/db_params.php
 ```
-* Para configurar las rutas a los ficheros donde queramos dirigirnos una vez logueados o los mensajes de salida en consola:
+* Para configurar los mensajes de salida tanto en web como en consola:
 ```bash
 /config/login_params.php
 ```
 * Hecho! nuestro sistema de login ya está funcionando
+
+## Utilización:
+------------------------
+* Para Registrarse en la aplicación via consola, debemos acceder al siguiente fichero:
+```bash
+/src/ConsoleRegisterController.php
+```
+* Para Identificarse en la aplicación via consola, debemos acceder al siguiente fichero:
+```bash
+/src/ConsoleLoginController.php
+```
+* Para Registrarse en la aplicación via web, debemos acceder al siguiente fichero:
+```bash
+/register.php
+```
+* Para Identificarse en la aplicación via web, debemos acceder al siguiente fichero:
+```bash
+/login.php
+```
+
 
